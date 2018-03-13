@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Music extends StatefulWidget {
   @override
-  State<StatefulWidget> createState()  => new MusicState();
+  State<StatefulWidget> createState() => new MusicState();
 }
 
 class MusicState extends State<Music> {

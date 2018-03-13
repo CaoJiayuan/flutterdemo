@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'pages/pages.dart';
+import 'package:flist/page_list.dart';
+import 'package:flutterdemo/pages/pages.dart';
 
 void main() => runApp(new MyApp());
 
