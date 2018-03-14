@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flist/page_list.dart';
 import 'package:flutterdemo/pages/pages.dart';
+import 'package:darequest/request.dart';
+
+
+const String HOST = 'http://192.168.70.12:8082';
 
 void main() => runApp(new MyApp());
 
@@ -49,9 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int page = 0;
 
+
   @override
   void initState() {
     super.initState();
+    Request.interceptor.config = (config) {
+      config.url = HOST + config.url;
+      return config;
+    };
     this.controller = new PageController(initialPage: page);
   }
 
@@ -64,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return new Scaffold(
+      appBar: new AppBar(title: new Text('M'),),
       body: new PageView(
         children: <Widget>[new Music(), new Play(), new Me()],
         controller: this.controller,
@@ -83,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onTap(int index) {
     this.controller.animateToPage(index, duration: const Duration(milliseconds: 300),
-        curve: Curves.ease);
+        curve: Curves.ease).then((data) => this.onPageChange(index));
   }
 
   void onPageChange(page) {
